@@ -1,0 +1,119 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.IndexController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllUsers</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetAllUsersController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllUsers</servlet-name>
+        <url-pattern>/getAllUsers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.AddNewUserController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addItem</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.AddNewItemController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addItem</servlet-name>
+        <url-pattern>/addItem</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllItems</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetAllItemsController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllItems</servlet-name>
+        <url-pattern>/getAllItems</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>bucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.BucketController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bucket</servlet-name>
+        <url-pattern>/bucket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addItemToBucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.AddItemToBucketController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addItemToBucket</servlet-name>
+        <url-pattern>/addItemToBucket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteItemFromBucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.DeleteItemFromBucketController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteItemFromBucket</servlet-name>
+        <url-pattern>/deleteItemFromBucket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addNewOrder</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.AddNewOrderController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addNewOrder</servlet-name>
+        <url-pattern>/addNewOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUserOrders</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.GetOrdersByUserIdController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserOrders</servlet-name>
+        <url-pattern>/getUserOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.DeleteOrderController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/deleteOrder</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>mate.academy.internetshop.controllers.InjectInitializer</listener-class>
+    </listener>
+</web-app>
