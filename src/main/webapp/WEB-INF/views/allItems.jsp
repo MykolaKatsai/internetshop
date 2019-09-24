@@ -18,12 +18,14 @@
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Add to bucket</th>
     </tr>
     <c:forEach var="item" items="${items}">
         <tr>
             <td>${item.itemId}</td>
             <td>${item.name}</td>
             <td>${item.price}</td>
+            <td><a href="servlet/addItemToBucket?item-id=${item.itemId}">ADD</a></td>
         </tr>
     </c:forEach>
 

@@ -25,12 +25,12 @@
             <td>${item.itemId}</td>
             <td>${item.name}</td>
             <td>${item.price}</td>
-            <td><a href="deleteItemFromBucket?bucket-id=${bucket.bucketId}&item-id=${item.itemId}">DELETE</a></td>
+            <td><a href="deleteItemFromBucket?item-id=${item.itemId}">DELETE</a></td>
         </tr>
     </c:forEach>
 </table>
 <hr>
-<a href="addNewOrder?bucket-id=${bucket.bucketId}">
+<a href="addNewOrder">
     <button>Make order</button>
 </a>
 </body>

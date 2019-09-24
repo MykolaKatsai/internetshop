@@ -41,8 +41,7 @@ public class AuthenticationFilter implements Filter {
                 Optional<User> user = userService.getByToken(cookie.getValue());
                 if (user.isPresent()) {
                     filterChain.doFilter(servletRequest, servletResponse);
-                } else {
-                    processUnAuthenticated(req, resp);
+                    return;
                 }
             }
         }

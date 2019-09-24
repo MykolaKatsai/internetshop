@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mate.academy.internetshop.exceptions.AuthenticationException;
 import mate.academy.internetshop.lib.Inject;
@@ -32,6 +33,10 @@ public class LoginController extends HttpServlet {
             User user = userService.login(login, password);
             Cookie cookie = new Cookie("MATE", user.getToken());
             resp.addCookie(cookie);
+
+            HttpSession session = req.getSession(true);
+            session.setAttribute("user-id", user.getUserId());
+
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (AuthenticationException e) {
             req.setAttribute("errorMsg", e.getMessage());

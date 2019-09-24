@@ -7,12 +7,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.UserService;
 
-public class AddNewUserController extends HttpServlet {
+public class RegistrationController extends HttpServlet {
     @Inject
     private static UserService userService;
 
@@ -31,8 +32,13 @@ public class AddNewUserController extends HttpServlet {
         user.setName(req.getParameter("user-name"));
         user.setSurname(req.getParameter("user-surname"));
         userService.add(user);
+
         Cookie cookie = new Cookie("MATE", user.getToken());
         resp.addCookie(cookie);
-        resp.sendRedirect(req.getContextPath() + "/getAllUsers");
+
+        HttpSession session = req.getSession(true);
+        session.setAttribute("user-id", user.getUserId());
+
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

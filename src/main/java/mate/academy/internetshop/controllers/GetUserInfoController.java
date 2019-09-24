@@ -8,19 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mate.academy.internetshop.lib.Inject;
-import mate.academy.internetshop.models.Bucket;
 import mate.academy.internetshop.models.User;
-import mate.academy.internetshop.services.BucketService;
-import mate.academy.internetshop.services.OrderService;
 import mate.academy.internetshop.services.UserService;
 
-public class AddNewOrderController extends HttpServlet {
+public class GetUserInfoController extends HttpServlet {
     @Inject
     private static UserService userService;
-    @Inject
-    private static OrderService orderService;
-    @Inject
-    private static BucketService bucketService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,9 +21,7 @@ public class AddNewOrderController extends HttpServlet {
         Long userId = (Long) req.getSession().getAttribute("user-id");
         User user = userService.get(userId);
 
-        Bucket bucket = bucketService.get(user.getBucketId());
-        orderService.completeOrder(bucket.getItems(), bucket.getUserId());
-        bucketService.clear(bucket.getBucketId());
-        resp.sendRedirect("getUserInfo");
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("/WEB-INF/views/userInfo.jsp").forward(req, resp);
     }
 }
