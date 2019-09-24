@@ -23,7 +23,7 @@
         <td><a href="registration">Add new user</a></td>
     </tr>
     <tr>
-        <td><a href="getAllUsers">Show all users</a></td>
+        <td><a href="servlet/getAllUsers">Show all users</a></td>
     </tr>
     <tr>
         <td><a href="addItemToBucket">Add item to bucket</a></td>

@@ -3,6 +3,7 @@ package mate.academy.internetshop.controllers;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +31,8 @@ public class AddNewUserController extends HttpServlet {
         user.setName(req.getParameter("user-name"));
         user.setSurname(req.getParameter("user-surname"));
         userService.add(user);
-
+        Cookie cookie = new Cookie("MATE", user.getToken());
+        resp.addCookie(cookie);
         resp.sendRedirect(req.getContextPath() + "/getAllUsers");
     }
 }

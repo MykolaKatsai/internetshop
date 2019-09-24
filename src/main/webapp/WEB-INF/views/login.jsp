@@ -11,6 +11,7 @@
     <title>Login</title>
 </head>
 <body>
+<div>${errorMsg}</div>
 <form action="login" method="post">
     <div class="container">
         <%--@declare id="psw"--%><%--@declare id="login"--%><h1>Register</h1>

@@ -3,11 +3,14 @@ package mate.academy.internetshop.controllers;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mate.academy.internetshop.exceptions.AuthenticationException;
 import mate.academy.internetshop.lib.Inject;
+import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.UserService;
 
 public class LoginController extends HttpServlet {
@@ -21,10 +24,18 @@ public class LoginController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("psw");
-        userService.login(login, password);
-        resp.sendRedirect(req.getContextPath() + "/");
+        try {
+            User user = userService.login(login, password);
+            Cookie cookie = new Cookie("MATE", user.getToken());
+            resp.addCookie(cookie);
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (AuthenticationException e) {
+            req.setAttribute("errorMsg", e.getMessage());
+            req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
+        }
     }
 }
