@@ -13,5 +13,7 @@ public interface UserDao {
 
     User delete(Long userId);
 
+    User login(String login, String password);
+
     List<User> getAllUsers();
 }

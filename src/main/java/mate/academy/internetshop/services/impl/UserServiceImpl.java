@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User login(String login, String password) {
+        return userDao.login(login, password);
+    }
+
+    @Override
     public List<Order> getOrders(Long userId) {
         return userDao.get(userId).getOrders();
     }

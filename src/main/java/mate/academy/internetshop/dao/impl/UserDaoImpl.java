@@ -2,6 +2,7 @@ package mate.academy.internetshop.dao.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import mate.academy.internetshop.dao.UserDao;
 import mate.academy.internetshop.lib.Dao;
@@ -41,6 +42,17 @@ public class UserDaoImpl implements UserDao {
         User user = get(userId);
         Storage.usersStorage.removeIf(b -> b.getUserId().equals(userId));
         return user;
+    }
+
+    @Override
+    public User login(String login, String password) {
+        Optional<User> user = Storage.usersStorage.stream()
+                .filter(u -> u.getLogin().equals(login))
+                .findFirst();
+        if(user.isEmpty() || !user.get().getPassword().equals(password)){
+          throw new RuntimeException();
+        }
+        return user.get();
     }
 
     @Override

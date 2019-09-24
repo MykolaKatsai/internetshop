@@ -14,6 +14,8 @@ public interface UserService {
 
     User delete(Long userId);
 
+    User login(String login, String password);
+
     List<Order> getOrders(Long userId);
 
     List<User> getAllUsers();
