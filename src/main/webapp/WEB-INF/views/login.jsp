@@ -14,8 +14,8 @@
 <div>${errorMsg}</div>
 <form action="login" method="post">
     <div class="container">
-        <%--@declare id="psw"--%><%--@declare id="login"--%><h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
+        <%--@declare id="psw"--%><%--@declare id="login"--%><h1>Login</h1>
+        <p>Please fill in this form to login.</p>
         <hr>
 
         <label for="login"><b>Login</b></label>

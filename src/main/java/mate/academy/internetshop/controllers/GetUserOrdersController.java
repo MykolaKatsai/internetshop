@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mate.academy.internetshop.lib.Inject;
-import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.UserService;
 
 public class GetUserOrdersController extends HttpServlet {

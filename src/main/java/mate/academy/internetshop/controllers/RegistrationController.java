@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mate.academy.internetshop.lib.Inject;
+import mate.academy.internetshop.models.Role;
 import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.UserService;
 
@@ -31,6 +32,7 @@ public class RegistrationController extends HttpServlet {
         user.setPassword(req.getParameter("psw"));
         user.setName(req.getParameter("user-name"));
         user.setSurname(req.getParameter("user-surname"));
+        user.setRole(Role.of("USER"));
         userService.add(user);
 
         Cookie cookie = new Cookie("MATE", user.getToken());

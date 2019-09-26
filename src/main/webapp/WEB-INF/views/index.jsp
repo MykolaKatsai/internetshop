@@ -14,7 +14,7 @@
 <body>
 <table>
     <tr>
-        <td><a href="addItem">Add new item</a></td>
+        <td><a href="servlet/addItem">Add new item</a></td>
     </tr>
     <tr>
         <td><a href="getAllItems">Show all items</a></td>

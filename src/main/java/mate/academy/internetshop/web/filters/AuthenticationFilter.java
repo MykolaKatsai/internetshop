@@ -48,10 +48,10 @@ public class AuthenticationFilter implements Filter {
         processUnAuthenticated(req, resp);
     }
 
-    private void processUnAuthenticated(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void processUnAuthenticated(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
         resp.sendRedirect(req.getContextPath() + "/login");
     }
-
 
     @Override
     public void destroy() {
