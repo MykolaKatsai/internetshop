@@ -29,7 +29,7 @@
             <td><c:out value="${user.login}"></c:out></td>
             <td><c:out value="${user.name}"></c:out></td>
             <td><c:out value="${user.surname}"></c:out></td>
-            <td><a href="bucket?bucket-id=${user.bucketId}"><c:out value="${user.bucketId}"></c:out></a></td>
+            <td><a href="getUserBucket?bucket-id=${user.bucketId}"><c:out value="${user.bucketId}"></c:out></a></td>
             <td><a href="getUserOrders?user-id=${user.userId}">orders</a></td>
         </tr>
     </c:forEach>
