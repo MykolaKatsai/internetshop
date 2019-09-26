@@ -152,6 +152,7 @@
     <listener>
         <listener-class>mate.academy.internetshop.controllers.listeners.InjectInitializer</listener-class>
     </listener>
+
     <listener>
         <listener-class>mate.academy.internetshop.controllers.listeners.DataInitializer</listener-class>
     </listener>

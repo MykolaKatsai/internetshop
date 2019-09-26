@@ -15,7 +15,7 @@ public class LogoutController extends HttpServlet {
         Cookie cookie = new Cookie("MATE", "");
         cookie.setMaxAge(0);
         resp.addCookie(cookie);
-        req.getSession().removeAttribute("user-id");
+        req.getSession().invalidate();
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }
