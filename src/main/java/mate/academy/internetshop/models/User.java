@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
     private static Long newUserId = 0L;
     private Long userId;
+    private String token;
     private String name;
     private String surname;
     private String login;
@@ -71,6 +72,14 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

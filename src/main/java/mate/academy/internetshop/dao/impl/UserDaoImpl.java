@@ -2,8 +2,10 @@ package mate.academy.internetshop.dao.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import mate.academy.internetshop.dao.UserDao;
+import mate.academy.internetshop.exceptions.AuthenticationException;
 import mate.academy.internetshop.lib.Dao;
 import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.storage.Storage;
@@ -44,7 +46,25 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User login(String login, String password) throws AuthenticationException {
+        Optional<User> user = Storage.usersStorage.stream()
+                .filter(u -> u.getLogin().equals(login))
+                .findFirst();
+        if (user.isEmpty() || !user.get().getPassword().equals(password)) {
+            throw new AuthenticationException("Incorrect login or password");
+        }
+        return user.get();
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return Storage.usersStorage;
+    }
+
+    @Override
+    public Optional<User> getByToken(String token) {
+        return Storage.usersStorage.stream()
+                .filter(u -> u.getToken().equals(token))
+                .findFirst();
     }
 }

@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mate.academy.internetshop.lib.Inject;
+import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.UserService;
 
-public class GetOrdersByUserIdController extends HttpServlet {
+public class GetUserOrdersController extends HttpServlet {
     @Inject
     private static UserService userService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("orders", userService
-                .getOrders(Long.valueOf(req.getParameter("user-id"))));
+        Long userId = (Long) req.getSession().getAttribute("user-id");
+
+        req.setAttribute("orders", userService.getOrders(userId));
         req.getRequestDispatcher("/WEB-INF/views/displayOrders.jsp").forward(req, resp);
     }
 }
