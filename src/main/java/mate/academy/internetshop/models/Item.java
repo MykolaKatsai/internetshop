@@ -2,7 +2,7 @@ package mate.academy.internetshop.models;
 
 public class Item {
     private static Long newItemId = 0L;
-    private Long itemId;
+    private final Long itemId;
     private String name;
     private Double price;
 
@@ -10,6 +10,10 @@ public class Item {
         this.name = name;
         this.price = prise;
         itemId = newItemId++;
+    }
+
+    public Item(Long itemId) {
+        this.itemId = itemId;
     }
 
     public Long getItemId() {

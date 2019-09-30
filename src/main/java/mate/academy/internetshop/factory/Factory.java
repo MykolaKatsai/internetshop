@@ -1,5 +1,8 @@
 package mate.academy.internetshop.factory;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import mate.academy.internetshop.dao.BucketDao;
 import mate.academy.internetshop.dao.ItemDao;
 import mate.academy.internetshop.dao.OrderDao;
@@ -8,6 +11,7 @@ import mate.academy.internetshop.dao.impl.BucketDaoImpl;
 import mate.academy.internetshop.dao.impl.ItemDaoImpl;
 import mate.academy.internetshop.dao.impl.OrderDaoImpl;
 import mate.academy.internetshop.dao.impl.UserDaoImpl;
+import mate.academy.internetshop.dao.impl.jdbc.ItemDaoJdbcImpl;
 import mate.academy.internetshop.services.BucketService;
 import mate.academy.internetshop.services.ItemService;
 import mate.academy.internetshop.services.OrderService;
@@ -26,6 +30,18 @@ public class Factory {
     private static ItemService itemServiceInstance;
     private static OrderService orderServiceInstance;
     private static UserService userServiceInstance;
+    private static Connection connection;
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection =
+                    DriverManager.getConnection("jdbc:mysql://localhost/internet_shop?"
+                            + "user=root&password=Nikolay_11082000&serverTimezone=UTC");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static BucketDao getBucketDaoInstance() {
         if (bucketDaoInstance == null) {
@@ -36,7 +52,7 @@ public class Factory {
 
     public static ItemDao getItemDaoInstance() {
         if (itemDaoInstance == null) {
-            itemDaoInstance = new ItemDaoImpl();
+            itemDaoInstance = new ItemDaoJdbcImpl(connection);
         }
         return itemDaoInstance;
     }

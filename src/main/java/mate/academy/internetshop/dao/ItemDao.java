@@ -2,6 +2,7 @@ package mate.academy.internetshop.dao;
 
 import java.util.List;
 
+import java.sql.SQLException;
 import mate.academy.internetshop.models.Item;
 
 public interface ItemDao {
@@ -13,5 +14,5 @@ public interface ItemDao {
 
     Item delete(Long itemId);
 
-    List<Item> getAllItems();
+    List<Item> getAllItems() throws SQLException;
 }
