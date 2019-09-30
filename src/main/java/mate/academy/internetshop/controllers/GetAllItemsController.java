@@ -2,6 +2,8 @@ package mate.academy.internetshop.controllers;
 
 import java.io.IOException;
 
+import java.sql.SQLException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.sql.SQLException;
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.models.Item;
 import mate.academy.internetshop.services.ItemService;

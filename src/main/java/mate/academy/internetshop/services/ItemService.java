@@ -1,8 +1,9 @@
 package mate.academy.internetshop.services;
 
+import java.sql.SQLException;
+
 import java.util.List;
 
-import java.sql.SQLException;
 import mate.academy.internetshop.models.Item;
 
 public interface ItemService {
