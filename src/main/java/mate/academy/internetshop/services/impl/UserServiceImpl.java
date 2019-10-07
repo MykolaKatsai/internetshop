@@ -1,7 +1,9 @@
 package mate.academy.internetshop.services.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import mate.academy.internetshop.dao.UserDao;
@@ -10,8 +12,10 @@ import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.lib.Service;
 import mate.academy.internetshop.models.Bucket;
 import mate.academy.internetshop.models.Order;
+import mate.academy.internetshop.models.Role;
 import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.BucketService;
+import mate.academy.internetshop.services.RoleService;
 import mate.academy.internetshop.services.UserService;
 
 @Service
@@ -20,16 +24,24 @@ public class UserServiceImpl implements UserService {
     private static UserDao userDao;
     @Inject
     private static BucketService bucketService;
+    @Inject
+    private static RoleService roleService;
 
     @Override
     public User add(User user) {
+        Set<Role> validRoles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            validRoles.add(roleService.getByName(role.getRoleName()));
+        }
+        user.setRoles(validRoles);
+        user.setToken(getToken());
+        user = userDao.add(user);
+
         if (user.getBucketId() == null) {
-            Bucket bucket = new Bucket(user.getUserId());
-            bucketService.add(bucket);
+            Bucket bucket = bucketService.add(new Bucket(user.getUserId()));
             user.setBucketId(bucket.getBucketId());
         }
-        user.setToken(getToken());
-        return userDao.add(user);
+        return user;
     }
 
     @Override

@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class User {
-    private static Long newUserId = 0L;
-    private Long userId;
+    private final Long userId;
     private String token;
     private String name;
     private String surname;
@@ -18,15 +17,28 @@ public class User {
     private List<Order> orders = new ArrayList<>();
 
     public User() {
-        userId = newUserId++;
+        userId = 0L;
+    }
+
+    public User(Long userId) {
+        this.userId = userId;
+    }
+
+    public static User copyUser(Long newUserId, User oldUser) {
+        User newUser = new User(newUserId);
+        newUser.setName(oldUser.getName());
+        newUser.setSurname(oldUser.getSurname());
+        newUser.setLogin(oldUser.getLogin());
+        newUser.setPassword(oldUser.getPassword());
+        newUser.setBucketId(oldUser.getBucketId());
+        newUser.setToken(oldUser.getToken());
+        newUser.roles = oldUser.roles;
+        newUser.orders = oldUser.orders;
+        return newUser;
     }
 
     public Long getUserId() {
         return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -91,6 +103,10 @@ public class User {
 
     public void setRole(Role role) {
         this.roles.add(role);
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

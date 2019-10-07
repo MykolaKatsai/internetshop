@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bucket {
-    private static Long newBucketId = 0L;
-    private Long bucketId;
+    private final Long bucketId;
     private Long userId;
     private List<Item> items;
 
     public Bucket(Long userId) {
-        bucketId = newBucketId++;
+        bucketId = 0L;
+        this.userId = userId;
+        items = new ArrayList<>();
+    }
+
+    public Bucket(Long bucketId, Long userId) {
+        this.bucketId = bucketId;
         this.userId = userId;
         items = new ArrayList<>();
     }

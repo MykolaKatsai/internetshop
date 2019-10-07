@@ -2,10 +2,11 @@ package mate.academy.internetshop.dao.impl.jdbc;
 
 import java.sql.Connection;
 
-public class AbstractClass<T> {
+public class AbstractDaoClass<T> {
+    protected static final String DB_NAME = "internet_shop";
     protected final Connection connection;
 
-    public AbstractClass(Connection connection) {
+    public AbstractDaoClass(Connection connection) {
         this.connection = connection;
     }
 }

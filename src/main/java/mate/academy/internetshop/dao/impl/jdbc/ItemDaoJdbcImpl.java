@@ -12,8 +12,7 @@ import mate.academy.internetshop.dao.ItemDao;
 import mate.academy.internetshop.models.Item;
 import org.apache.log4j.Logger;
 
-public class ItemDaoJdbcImpl extends AbstractClass<Item> implements ItemDao {
-    private static final String DB_NAME = "internet_shop";
+public class ItemDaoJdbcImpl extends AbstractDaoClass<Item> implements ItemDao {
     private static final Logger logger = Logger.getLogger(ItemDaoJdbcImpl.class);
 
     public ItemDaoJdbcImpl(Connection connection) {
@@ -22,7 +21,7 @@ public class ItemDaoJdbcImpl extends AbstractClass<Item> implements ItemDao {
 
     @Override
     public Item add(Item item) {
-        String query = String.format("INSERT INTO %s.items (name, price) values('%s', %s);",
+        String query = String.format("INSERT INTO %s.items (item_name, price) values('%s', %s);",
                 DB_NAME, item.getName(), item.getPrice());
         try (Statement statement = connection.createStatement()) {
             statement.execute(query);
@@ -53,7 +52,7 @@ public class ItemDaoJdbcImpl extends AbstractClass<Item> implements ItemDao {
 
     @Override
     public Item update(Item item) {
-        String query = String.format("UPDATE %s.items SET name='%s', price='%s' WHERE item_id=%d;",
+        String query = String.format("UPDATE %s.items SET item_name='%s', price='%s' WHERE item_id=%d;",
                 DB_NAME, item.getName(), item.getPrice(), item.getItemId());
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(query);
@@ -68,7 +67,7 @@ public class ItemDaoJdbcImpl extends AbstractClass<Item> implements ItemDao {
         Item item = get(itemId);
         String query = String.format("DELETE FROM %s.items WHERE item_id=%d;", DB_NAME, itemId);
         try (Statement statement = connection.createStatement()) {
-            ResultSet rs = statement.executeQuery(query);
+            statement.execute(query);
         } catch (SQLException e) {
             logger.warn("Can`t delete item");
         }
@@ -82,7 +81,7 @@ public class ItemDaoJdbcImpl extends AbstractClass<Item> implements ItemDao {
         try (Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                String name = rs.getString("name");
+                String name = rs.getString("item_name");
                 Double price = rs.getDouble("price");
                 Item item = new Item(rs.getLong("item_id"));
                 item.setName(name);
