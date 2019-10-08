@@ -1,5 +1,7 @@
 package mate.academy.internetshop.services.impl;
 
+import java.sql.SQLException;
+
 import java.util.List;
 
 import mate.academy.internetshop.dao.ItemDao;
@@ -34,7 +36,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> getAllItems() {
+    public List<Item> getAllItems() throws SQLException {
         return itemDao.getAllItems();
     }
 }

@@ -15,11 +15,13 @@ import java.util.Map;
 import mate.academy.internetshop.dao.BucketDao;
 import mate.academy.internetshop.dao.ItemDao;
 import mate.academy.internetshop.dao.OrderDao;
+import mate.academy.internetshop.dao.RoleDao;
 import mate.academy.internetshop.dao.UserDao;
 import mate.academy.internetshop.factory.Factory;
 import mate.academy.internetshop.services.BucketService;
 import mate.academy.internetshop.services.ItemService;
 import mate.academy.internetshop.services.OrderService;
+import mate.academy.internetshop.services.RoleService;
 import mate.academy.internetshop.services.UserService;
 
 public class NewInjector {
@@ -36,10 +38,13 @@ public class NewInjector {
         classMap.put(ItemDao.class, Factory.getItemDaoInstance());
         classMap.put(OrderDao.class, Factory.getOrderDaoInstance());
         classMap.put(UserDao.class, Factory.getUserDaoInstance());
+        classMap.put(RoleDao.class, Factory.getRoleDaoInstance());
+
         classMap.put(BucketService.class, Factory.getBucketServiceInstance());
         classMap.put(ItemService.class, Factory.getItemServiceInstance());
         classMap.put(OrderService.class, Factory.getOrderServiceInstance());
         classMap.put(UserService.class, Factory.getUserServiceInstance());
+        classMap.put(RoleService.class, Factory.getRoleServiceInstance());
     }
 
     public static void injectDependency() throws IllegalAccessException {

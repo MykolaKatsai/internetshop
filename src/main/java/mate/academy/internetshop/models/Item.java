@@ -1,15 +1,18 @@
 package mate.academy.internetshop.models;
 
 public class Item {
-    private static Long newItemId = 0L;
-    private Long itemId;
+    private final Long itemId;
     private String name;
     private Double price;
 
     public Item(String name, Double prise) {
         this.name = name;
         this.price = prise;
-        itemId = newItemId++;
+        itemId = 0L;
+    }
+
+    public Item(Long itemId) {
+        this.itemId = itemId;
     }
 
     public Long getItemId() {

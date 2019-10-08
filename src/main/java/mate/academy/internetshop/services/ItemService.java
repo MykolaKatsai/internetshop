@@ -1,5 +1,7 @@
 package mate.academy.internetshop.services;
 
+import java.sql.SQLException;
+
 import java.util.List;
 
 import mate.academy.internetshop.models.Item;
@@ -13,5 +15,5 @@ public interface ItemService {
 
     Item delete(Long itemId);
 
-    List<Item> getAllItems();
+    List<Item> getAllItems() throws SQLException;
 }
