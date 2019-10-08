@@ -7,7 +7,12 @@ public class Order {
     private Long userId;
     private List<Item> orders;
 
-    public Order(Long orderId) {
+    public Order(Long userId) {
+        this.userId = userId;
+        this.orderId = 0L;
+    }
+
+    public Order(Long orderId, Long userId) {
         this.userId = userId;
         this.orderId = orderId;
     }

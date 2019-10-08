@@ -30,8 +30,7 @@ public class OrderDaoJdbcImpl extends AbstractDaoClass<Order> implements OrderDa
             statement.execute();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
-                Order orderWithValidId = new Order(rs.getLong("order_id"));
-                orderWithValidId.setUserId(order.getUserId());
+                Order orderWithValidId = new Order(rs.getLong(1), order.getUserId());
                 orderWithValidId.setOrders(order.getOrders());
                 order = orderWithValidId;
             }
@@ -69,8 +68,7 @@ public class OrderDaoJdbcImpl extends AbstractDaoClass<Order> implements OrderDa
                 item.setPrice(rs.getDouble("price"));
                 items.add(item);
             }
-            order = new Order(orderId);
-            order.setUserId(userId);
+            order = new Order(orderId, userId);
             order.setOrders(items);
 
         } catch (SQLException e) {
@@ -107,6 +105,21 @@ public class OrderDaoJdbcImpl extends AbstractDaoClass<Order> implements OrderDa
             logger.warn("Can`t delete order");
         }
         return order;
+    }
+
+    public List<Order> getUserOrders(Long userId) {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT * FROM orders WHERE orders.user_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                orders.add(get(resultSet.getLong("order_id")));
+            }
+        } catch (SQLException e) {
+            logger.error("Can`t get user orders");
+        }
+        return orders;
     }
 
     private void deleteItemsFromOrder(Long orderId) throws SQLException {

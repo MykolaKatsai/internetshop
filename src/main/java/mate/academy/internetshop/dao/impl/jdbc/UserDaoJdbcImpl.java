@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import mate.academy.internetshop.dao.UserDao;
 import mate.academy.internetshop.exceptions.AuthenticationException;
+import mate.academy.internetshop.models.Order;
 import mate.academy.internetshop.models.Role;
 import mate.academy.internetshop.models.User;
 import org.apache.log4j.Logger;
@@ -40,15 +41,32 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
             if (rs.next()) {
                 user = User.copyUser(rs.getLong(1), user);
             }
+        } catch (SQLException e) {
+            logger.error("Can`t add user to db");
+        }
 
-            String addRoleToUserQuery = "INSERT INTO users_roles (user_id, role_id) "
-                    + "VALUES ('%d', '%d')";
+        String addRolesToUserQuery = "INSERT INTO users_roles (user_id, role_id) "
+                + "VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(addRolesToUserQuery)) {
+            statement.setLong(1, user.getUserId());
             for (Role role : user.getRoles()) {
-                statement.execute(String.format(addRoleToUserQuery, user.getUserId(),
-                        role.getRoleId()));
+                statement.setLong(2, role.getRoleId());
+                statement.execute();
             }
         } catch (SQLException e) {
-            logger.warn("Can`t add user to db");
+            logger.error("Can`t add role to user");
+        }
+
+        String addOrdersToUserQuery = "INSERT INTO orders (order_id, user_id) " +
+                "VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(addOrdersToUserQuery)) {
+            statement.setLong(2, user.getUserId());
+            for (Order order : user.getOrders()) {
+                statement.setLong(1, order.getOrderId());
+                statement.execute();
+            }
+        } catch (SQLException e) {
+            logger.error("Can`t add order to user");
         }
         return user;
     }
@@ -67,7 +85,7 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
                 return createUserFromResultSet(rs, user);
             }
         } catch (SQLException e) {
-            logger.warn("Can`t get user from db");
+            logger.error("Can`t get user from db");
         }
         return null;
     }
@@ -85,7 +103,7 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
             statement.setLong(6, user.getUserId());
             statement.execute();
         } catch (SQLException e) {
-            logger.warn("Can`t update user");
+            logger.error("Can`t update user");
         }
         return user;
     }
@@ -119,7 +137,7 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
             }
             throw new AuthenticationException("Incorrect login or password!");
         } catch (SQLException e) {
-            logger.warn("Can`t login user");
+            logger.error("Can`t login user");
         }
         return null;
     }
@@ -135,7 +153,7 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
                 users.add(createUserFromResultSet(rs, user));
             }
         } catch (SQLException e) {
-            logger.warn("Can`t get users from db");
+            logger.error("Can`t get users from db");
         }
         return users;
     }
@@ -152,7 +170,7 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
                 return Optional.of(createUserFromResultSet(rs, user));
             }
         } catch (SQLException e) {
-            logger.warn("Can`t get user by token = " + token);
+            logger.error("Can`t get user by token = " + token);
         }
         return Optional.empty();
     }
@@ -169,6 +187,11 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
                 user.setRole(role);
             }
         }
+        return user;
+    }
+
+    private User getOrders(User user) {
+
         return user;
     }
 

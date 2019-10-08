@@ -31,6 +31,6 @@ public class DeleteItemFromBucketController extends HttpServlet {
         bucket.getItems().removeIf(item -> item.getItemId().equals(itemId));
         bucketService.update(bucket);
 
-        resp.sendRedirect("bucket?bucket-id=" + bucketId + "&item-id=" + itemId);
+        resp.sendRedirect("getUserBucket");
     }
 }

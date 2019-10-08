@@ -80,12 +80,12 @@ public class BucketDaoJdbcImpl extends AbstractDaoClass<Bucket> implements Bucke
 
     @Override
     public Bucket update(Bucket bucket) {
-        String updateBucketQuery = "INSERT INTO orders_items (bucket_id, item_id) VALUES (?, ?)";
+        String updateBucketQuery = "INSERT INTO buckets_items (item_id, bucket_id) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(updateBucketQuery)) {
             deleteItemsFromBucket(bucket.getBucketId());
-            statement.setLong(1, bucket.getBucketId());
+            statement.setLong(2, bucket.getBucketId());
             for (Item item : bucket.getItems()) {
-                statement.setLong(2, item.getItemId());
+                statement.setLong(1, item.getItemId());
                 statement.execute();
             }
         } catch (SQLException e) {

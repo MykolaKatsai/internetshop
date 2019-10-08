@@ -24,8 +24,10 @@ import mate.academy.internetshop.services.impl.ItemServiceImpl;
 import mate.academy.internetshop.services.impl.OrderServiceImpl;
 import mate.academy.internetshop.services.impl.RoleServiceImpl;
 import mate.academy.internetshop.services.impl.UserServiceImpl;
+import org.apache.log4j.Logger;
 
 public class Factory {
+    private static final Logger logger = Logger.getLogger(Factory.class);
     private static BucketDao bucketDaoInstance;
     private static ItemDao itemDaoInstance;
     private static OrderDao orderDaoInstance;
@@ -45,7 +47,7 @@ public class Factory {
                     DriverManager.getConnection("jdbc:mysql://localhost/internet_shop?"
                             + "user=root&password=Nikolay_11082000&serverTimezone=UTC");
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Error in work with driver, or connection to DB");
         }
     }
 
