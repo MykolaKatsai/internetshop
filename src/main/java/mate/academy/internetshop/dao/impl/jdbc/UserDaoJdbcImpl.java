@@ -57,8 +57,8 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
             logger.error("Can`t add role to user");
         }
 
-        String addOrdersToUserQuery = "INSERT INTO orders (order_id, user_id) " +
-                "VALUES (?, ?)";
+        String addOrdersToUserQuery = "INSERT INTO orders (order_id, user_id) "
+                + "VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(addOrdersToUserQuery)) {
             statement.setLong(2, user.getUserId());
             for (Order order : user.getOrders()) {
