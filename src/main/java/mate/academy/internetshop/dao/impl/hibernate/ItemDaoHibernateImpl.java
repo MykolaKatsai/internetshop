@@ -73,7 +73,6 @@ public class ItemDaoHibernateImpl implements ItemDao {
             session = HibernateUtil.sessionFactory().openSession();
             transaction = session.beginTransaction();
             item = get(itemId);
-            item.setItemId(itemId);
             session.delete(item);
             transaction.commit();
         } catch (Exception e) {
