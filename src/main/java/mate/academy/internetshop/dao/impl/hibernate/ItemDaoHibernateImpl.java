@@ -17,13 +17,19 @@ public class ItemDaoHibernateImpl implements ItemDao {
     public Item add(Item item) {
         Transaction transaction = null;
         Long itemId = null;
-        try (Session session = HibernateUtil.sessionFactory().openSession()) {
+        Session session = null;
+        try {
+            session = HibernateUtil.sessionFactory().openSession();
             transaction = session.beginTransaction();
             itemId = (Long) session.save(item);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
             }
         }
         item.setItemId(itemId);
@@ -40,13 +46,19 @@ public class ItemDaoHibernateImpl implements ItemDao {
     @Override
     public Item update(Item item) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.sessionFactory().openSession()) {
+        Session session = null;
+        try {
+            session = HibernateUtil.sessionFactory().openSession();
             transaction = session.beginTransaction();
             session.update(item);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
             }
         }
         return item;
@@ -56,7 +68,9 @@ public class ItemDaoHibernateImpl implements ItemDao {
     public Item delete(Long itemId) {
         Transaction transaction = null;
         Item item = null;
-        try (Session session = HibernateUtil.sessionFactory().openSession()) {
+        Session session = null;
+        try {
+            session = HibernateUtil.sessionFactory().openSession();
             transaction = session.beginTransaction();
             item = get(itemId);
             item.setItemId(itemId);
@@ -66,6 +80,10 @@ public class ItemDaoHibernateImpl implements ItemDao {
             if (transaction != null) {
                 transaction.rollback();
             }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
         return item;
     }
@@ -73,7 +91,7 @@ public class ItemDaoHibernateImpl implements ItemDao {
     @Override
     public List<Item> getAllItems() throws SQLException {
         try (Session session = HibernateUtil.sessionFactory().openSession()) {
-            return session.createCriteria(Item.class).list();
+            return (List<Item>) session.createCriteria(Item.class).list();
         }
     }
 }
