@@ -105,7 +105,8 @@ public class AuthorizationFilter implements Filter {
     }
 
     private boolean verifyRole(User user, Role.RoleName roleName) {
-        return user.getRoles().stream().anyMatch(role -> role.getRoleName().equals(roleName.toString()));
+        return user.getRoles().stream().anyMatch(role -> role.getRoleName()
+                .equals(roleName.toString()));
     }
 
 }

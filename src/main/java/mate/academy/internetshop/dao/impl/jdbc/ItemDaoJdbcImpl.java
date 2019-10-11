@@ -54,7 +54,8 @@ public class ItemDaoJdbcImpl extends AbstractDaoClass<Item> implements ItemDao {
 
     @Override
     public Item update(Item item) {
-        String query = String.format("UPDATE %s.items SET item_name='%s', price='%s' WHERE item_id=%d;",
+        String query = String.format("UPDATE %s.items SET item_name='%s', price='%s'"
+                        + " WHERE item_id=%d;",
                 DB_NAME, item.getName(), item.getPrice(), item.getItemId());
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(query);

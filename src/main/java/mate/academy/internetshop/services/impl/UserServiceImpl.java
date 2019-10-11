@@ -11,7 +11,6 @@ import mate.academy.internetshop.exceptions.AuthenticationException;
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.lib.Service;
 import mate.academy.internetshop.models.Bucket;
-import mate.academy.internetshop.models.Order;
 import mate.academy.internetshop.models.Role;
 import mate.academy.internetshop.models.User;
 import mate.academy.internetshop.services.BucketService;
