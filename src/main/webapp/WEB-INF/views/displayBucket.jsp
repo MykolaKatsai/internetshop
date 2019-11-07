@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="bucket" scope="request" type="mate.academy.internetshop.models.Bucket"/>
+<jsp:useBean id="bucket" scope="request" type="katsai.nikolai.internetshop.models.Bucket"/>
 <%--
   Created by IntelliJ IDEA.
   User: Nik

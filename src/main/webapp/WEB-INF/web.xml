@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.IndexController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.IndexController</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>getAllUsers</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.GetAllUsersController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.GetAllUsersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllUsers</servlet-name>
@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>registration</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.RegistrationController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.RegistrationController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -33,7 +33,7 @@
 
     <servlet>
         <servlet-name>addItem</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddNewItemController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.AddNewItemController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addItem</servlet-name>
@@ -42,7 +42,7 @@
 
     <servlet>
         <servlet-name>getAllItems</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.GetAllItemsController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.GetAllItemsController</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -52,7 +52,7 @@
 
     <servlet>
         <servlet-name>getUserBucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.BucketController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.BucketController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getUserBucket</servlet-name>
@@ -61,7 +61,7 @@
 
     <servlet>
         <servlet-name>addItemToBucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddItemToBucketController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.AddItemToBucketController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addItemToBucket</servlet-name>
@@ -70,7 +70,7 @@
 
     <servlet>
         <servlet-name>deleteItemFromBucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.DeleteItemFromBucketController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.DeleteItemFromBucketController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteItemFromBucket</servlet-name>
@@ -79,7 +79,7 @@
 
     <servlet>
         <servlet-name>addNewOrder</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddNewOrderController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.AddNewOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addNewOrder</servlet-name>
@@ -88,7 +88,7 @@
 
     <servlet>
         <servlet-name>getUserOrders</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.GetUserOrdersController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.GetUserOrdersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getUserOrders</servlet-name>
@@ -97,7 +97,7 @@
 
     <servlet>
         <servlet-name>deleteOrder</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.DeleteOrderController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.DeleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteOrder</servlet-name>
@@ -106,7 +106,7 @@
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.LoginController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -115,7 +115,7 @@
 
     <servlet>
         <servlet-name>getUserInfo</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.GetUserInfoController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.GetUserInfoController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getUserInfo</servlet-name>
@@ -124,16 +124,25 @@
 
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.LogoutController</servlet-class>
+        <servlet-class>katsai.nikolai.internetshop.controllers.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>injectData</servlet-name>
+        <servlet-class>katsai.nikolai.internetshop.controllers.InjectDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>injectData</servlet-name>
+        <url-pattern>/injectData</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>authenticationFilter</filter-name>
-        <filter-class>mate.academy.internetshop.web.filters.AuthenticationFilter</filter-class>
+        <filter-class>katsai.nikolai.internetshop.web.filters.AuthenticationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>authenticationFilter</filter-name>
@@ -142,7 +151,7 @@
 
     <filter>
         <filter-name>authorizationFilter</filter-name>
-        <filter-class>mate.academy.internetshop.web.filters.AuthorizationFilter</filter-class>
+        <filter-class>katsai.nikolai.internetshop.web.filters.AuthorizationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>authorizationFilter</filter-name>
@@ -150,7 +159,6 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>mate.academy.internetshop.controllers.listeners.InjectInitializer</listener-class>
+        <listener-class>katsai.nikolai.internetshop.controllers.listeners.InjectInitializer</listener-class>
     </listener>
-
 </web-app>

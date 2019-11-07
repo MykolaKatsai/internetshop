@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="user" scope="request" type="mate.academy.internetshop.models.User"/>
+<jsp:useBean id="user" scope="request" type="katsai.nikolai.internetshop.models.User"/>
 <%--
   Created by IntelliJ IDEA.
   User: Nik
@@ -23,11 +23,11 @@
         <th>Orders</th>
     </tr>
     <tr>
-        <td><c:out value="${user.userId}"></c:out></td>
-        <td><c:out value="${user.login}"></c:out></td>
-        <td><c:out value="${user.name}"></c:out></td>
-        <td><c:out value="${user.surname}"></c:out></td>
-        <td><a href="getUserBucket"><c:out value="${user.bucketId}"></c:out></a></td>
+        <td><c:out value="${user.userId}"/></td>
+        <td><c:out value="${user.login}"/></td>
+        <td><c:out value="${user.name}"/></td>
+        <td><c:out value="${user.surname}"/></td>
+        <td><a href="getUserBucket"><c:out value="${user.bucket.bucketId}"/></a></td>
         <td><a href="getUserOrders">orders</a></td>
     </tr>
 </table>
