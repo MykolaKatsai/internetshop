@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
     <session-factory>
         <!-- JDBC Database connection settings -->
@@ -5,8 +9,13 @@
         <property name="connection.url">jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC</property>
         <property name="connection.username">root</property>
         <property name="connection.password">Nikolay_11082000</property>
-        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
-        <mapping class="mate.academy.internetshop.models.Item"/>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <mapping class="katsai.nikolai.internetshop.models.Item"/>
+        <mapping class="katsai.nikolai.internetshop.models.Role"/>
+        <mapping class="katsai.nikolai.internetshop.models.User"/>
+        <mapping class="katsai.nikolai.internetshop.models.Bucket"/>
+        <mapping class="katsai.nikolai.internetshop.models.Order"/>
     </session-factory>
 </hibernate-configuration>

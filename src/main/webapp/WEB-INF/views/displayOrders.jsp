@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="orders" scope="request" type="java.util.List<mate.academy.internetshop.models.Order>"/>
+<jsp:useBean id="orders" scope="request" type="java.util.List<katsai.nikolai.internetshop.models.Order>"/>
 <%--
   Created by IntelliJ IDEA.
   User: Nik
@@ -23,8 +23,8 @@
     <c:forEach var="order" items="${orders}">
         <tr>
             <td>${order.orderId}</td>
-            <td>${order.userId}</td>
-            <td><c:forEach var="item" items="${order.orders}">
+            <td>${order.user.userId}</td>
+            <td><c:forEach var="item" items="${order.items}">
                 <table>
                     <tr>
                         <td>${item.name}</td>
