@@ -31,13 +31,14 @@ public class User {
     private String name;
     private String surname;
     private String login;
-    @Column(name = "user_password")
+    @Column(name = "user_password", columnDefinition = "VARCHAR(500)")
     private String password;
+    private byte[] salt;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "bucket_id", referencedColumnName = "bucket_id")
     private Bucket bucket;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
@@ -85,6 +86,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     public Bucket getBucket() {

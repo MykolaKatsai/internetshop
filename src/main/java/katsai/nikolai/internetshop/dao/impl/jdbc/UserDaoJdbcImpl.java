@@ -132,25 +132,22 @@ public class UserDaoJdbcImpl extends AbstractDaoClass<User> implements UserDao {
     }
 
     @Override
-    public User login(String login, String password) throws AuthenticationException {
+    public Optional<User> getByLogin(String login) {
         String query = "SELECT * FROM users WHERE login = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                if (!password.equals(rs.getString("password"))) {
-                    throw new AuthenticationException("Incorrect login or password!");
-                }
                 User user = new User();
                 user.setUserId(rs.getLong("user_id"));
                 user = getRoles(user);
-                return createUserFromResultSet(rs, user);
+                return Optional.of(createUserFromResultSet(rs, user));
             }
-            throw new AuthenticationException("Incorrect login or password!");
+
         } catch (SQLException e) {
             logger.error("Can`t login user");
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override

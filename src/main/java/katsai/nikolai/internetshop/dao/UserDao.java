@@ -15,7 +15,7 @@ public interface UserDao {
 
     User delete(Long userId);
 
-    User login(String login, String password) throws AuthenticationException;
+    Optional<User> getByLogin(String login);
 
     List<User> getAllUsers();
 

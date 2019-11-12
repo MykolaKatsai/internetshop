@@ -3,7 +3,6 @@ package katsai.nikolai.internetshop.dao.impl.hibernate;
 import java.util.List;
 import java.util.Optional;
 
-import katsai.nikolai.internetshop.exceptions.AuthenticationException;
 import katsai.nikolai.internetshop.dao.UserDao;
 import katsai.nikolai.internetshop.lib.Dao;
 import katsai.nikolai.internetshop.models.User;
@@ -89,15 +88,12 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public User login(String login, String password) throws AuthenticationException {
+    public Optional<User> getByLogin(String login) {
         try (Session session = HibernateUtil.sessionFactory().openSession()) {
-            Query query = session.createQuery("FROM User WHERE login=:login");
+            Query<User> query = session.createQuery("FROM User WHERE login=:login", User.class);
             query.setParameter("login", login);
-            User user = (User) query.uniqueResult();
-            if (user == null || !user.getPassword().equals(password)) {
-                throw new AuthenticationException("Incorrect login or password");
-            }
-            return user;
+            User user = query.uniqueResult();
+            return Optional.ofNullable(user);
         }
     }
 
