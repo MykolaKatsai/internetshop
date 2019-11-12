@@ -32,7 +32,7 @@ Change login and password to your`s DB in src.main.java.resources.hibernate.cfg.
 
 Write desirable path to your log file in resources.log4j.properties.
 
-After Run Tomcat command make /injectData request to get admin account with login admin and password admin
+After first Run Tomcat command make /injectData request to get admin account with login admin and password admin
 
 # Authors
 https://github.com/NikolaiKatsai
