@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private static OrderService orderService;
 
     @Override
-    public User add(User user) {
+    public User add(User user) 
         Role role = roleDao.getByName("USER");
         byte[] salt = HashUtil.getSalt();
         String hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
