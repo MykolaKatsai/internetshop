@@ -30,7 +30,7 @@ public class NewInjector {
 
     static {
         try {
-            classes.addAll(getClasses("mate.academy.internetshop"));
+            classes.addAll(getClasses("katsai.nikolai.internetshop"));
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }

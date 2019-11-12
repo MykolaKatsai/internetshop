@@ -22,8 +22,7 @@ public class Bucket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bucket_id")
     private Long bucketId;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,
-            mappedBy = "bucket")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "bucket")
     private User user;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "buckets_items",
