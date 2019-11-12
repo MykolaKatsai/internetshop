@@ -69,8 +69,9 @@ CREATE TABLE `users` (
                          `token` varchar(255) DEFAULT NULL,
                          `bucket_id` bigint(20) DEFAULT NULL,
                          PRIMARY KEY (`user_id`),
+                         UNIQUE KEY `login_UNIQUE` (`login`),
                          KEY `FK8l2qc4c6gihjdyoch727guci` (`bucket_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `users_roles` (
                                `user_id` bigint(20) NOT NULL,
